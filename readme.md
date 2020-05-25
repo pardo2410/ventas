@@ -1,1 +1,8 @@
-echo "# App_Flask" >> README.md 
+# Lista de ventas globales
+
+## instalacion 
+
+Ejecutar
+```
+pip install -r requirements.txt
+```
