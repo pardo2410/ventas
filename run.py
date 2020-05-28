@@ -35,4 +35,4 @@ def paises():
             else:     
                 d[linea[1]] = {'ingresos': float(linea[11]), 'beneficios': float(linea[13])}
 
-    return d
+    return render_template('pais.html',ventas_pais=d , region_nm =request.values['region'])
