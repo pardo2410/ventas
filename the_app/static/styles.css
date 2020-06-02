@@ -17,3 +17,14 @@ footer {
     padding-top: 10px;
     padding-bottom: 40px;
 }
+
+.error-msg {
+    color: red;
+    font-size: 0.8em;
+    text-align: right;
+    margin-top: -15px;
+}
+
+input.error {
+    border-color: red;
+}
