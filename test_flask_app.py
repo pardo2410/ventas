@@ -1,4 +1,3 @@
-
 import unittest
 from test_base import TestFlaskBase
 

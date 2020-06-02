@@ -1,7 +1,6 @@
 # Lista de ventas globales
 
-## instalacion 
-
+## Instalación 
 Ejecutar
 ```
 pip install -r requirements.txt

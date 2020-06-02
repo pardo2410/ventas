@@ -1,32 +1,21 @@
-import sqlite3
-import csv
+import csv, sqlite3
 
-fVentas = open('./sales.csv', 'r')
-csvreader = csv.reader(fVentas, delimiter=',')
-d = {}
-i=1
-for linea in csvreader:
-	if i < len(linea):
-		if linea[2] not in  d and linea[2] != 'tipo_producto':
-			d[linea[2]] = {"precio_unitario":float(linea[9]), "coste_unitario":float(linea[10]),"id":i}
-			i+=1
-	
+filename = "./sales10.csv"
+database = "./data/ventas.db"
 
+conn = sqlite3.connect(database)
+cur = conn.cursor()
 
-conn =sqlite3.connect('ventas.db')
-print("Opened database successfully")
-c = conn.cursor()
-# Insert a row of data
-for tipo_producto, precio_unitario in d.items():
-	c.execute("INSERT INTO productos (id, tipo_producto, precio_unitario, costo_unitario) VALUES ('{}','{}', '{}','{}')".format( d[tipo_producto]["id"], tipo_producto, d[tipo_producto]["precio_unitario"], d[tipo_producto]["coste_unitario"]))
-# Save (commit) the changes
+fSales = open(filename, 'r')
+csvreader = csv.reader(fSales, delimiter=",")
+
+headerRow = next(csvreader)
+print(headerRow)
+
+query = 'INSERT OR IGNORE into productos (tipo_producto, precio_unitario, coste_unitario) values (?, ?, ?);'
+for dataRow in csvreader:
+    tupla_datos = ( dataRow[2], float(dataRow[9]), float(dataRow[10]) )
+    cur.execute(query, tupla_datos)
+
 conn.commit()
-print("Records created successfully")
-# We can also close the connection if we are done with it.
-# Just be sure any changes have been committed or they will be lost.
 conn.close()
-
-
-
-
-
