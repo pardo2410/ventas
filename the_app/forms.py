@@ -19,3 +19,12 @@ class ProductForm(FlaskForm):
         if field.data > self.precio_unitario.data:
             raise ValidationError('El coste unitario ha de ser menor o igual que el precio ')
     '''
+
+class ModProductForm(FlaskForm):
+    id = HiddenField('id')
+    tipo_producto = StringField('Tipo de Producto', validators=[DataRequired(), Length(min=3, message="Debe tener al menos tres caracteres")])
+    precio_unitario = FloatField('Precio U.', validators=[DataRequired(message="Introduce algo, nano")])
+    coste_unitario = FloatField('Coste U.', validators=[DataRequired(), valida_coste])
+
+    modificar = SubmitField('Modificar')
+    borrar = SubmitField('Borrar')

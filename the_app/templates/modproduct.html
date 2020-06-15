@@ -37,7 +37,9 @@
     {% else %}
         {{ form.coste_unitario(class="u-full-width", placeholder="Coste") }}
     {% endif %}
-
-    {{ form.submit(class="button-primary")}}
+    <div class="u-pull-right">
+        {{ form.modificar(class="button-primary")}}
+        {{ form.borrar(class="button-primary")}}
+    </div>
 </form>
 {% endblock %}
